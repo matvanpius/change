@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+   
+   <div class="row"  style="margin-top:9rem ;">
+    <div class="col-lg-12" >
+      <div class="box-element"  id="box-color">
+        <a  class="btn btn-outline-dark" href="#">&#x2190;</a>
+        <br>
+        <br>
+        <table class="table">
+          <tr>
+            <th><h6>Products: <strong>{{order.get_cart_items}}</strong></h6></th>
+            <th><h6>Total: <strong>{{order.get_total_price|floatformat:2}}</strong></h6></th>
+            <th><a class="btn btn-success" href="{% url 'summary' %}">Check Out</a></th>
+
+          </tr>
+        </table>
+      </div>
+      <br>
+      <div class="box-element" id="box-color">
+            <div class="cart-row">
+              <div style="flex: 2;"></div>
+              <div style="flex: 2;font-size: 20px;"><strong>ITEM</strong></div>
+              <div style="flex: 1;font-size: 20px;"><strong>QUANTITY</strong></div>
+              <div style="flex: 1;font-size: 20px;"><strong>PRICE</strong></div>
+              <div style="flex: 1;font-size: 20px;"><strong>TOTAL</strong></div>
+            </div>
+            {% for c in cart  %}
+            <div class="cart-row" id="cart-row">
+             
+              <i class="bx bxs-trash-alt cart-remove"></i>
+              <div style="flex: 2;"><img src="{{item.product.imageURL}}" alt="" class="flex-img"></div>
+              <div style="flex: 2;  margin-top: 44px; font-family: 'Times New Roman', Times, serif;font-size: 23px;">{{c.product.name}}</div>
+              <div style="flex: 1;">
+                 <p class="quantity1">{{c.quantity}}</p>
+                    <div class="quantity">
+                      <a ><i class="fas fa-plus ml-2 update_cart" id="plus" data-product={{product.id}} data-action="add"></i></a>
+                      <a ><i class="fas fa-minus ml-2 update_cart"  id="minus" data-product={{product.id}} data-action="remove"></i></a>
+                    </div>
+
+              </div>
+              <div style="flex: 1; margin-top: 44px;font-family: 'Times New Roman', Times, serif;font-size: 23px;">{{c.product.price|floatformat:2}}shs</div>
+              <div style="flex: 1; margin-top: 44px;font-family: 'Times New Roman', Times, serif;font-size: 23px;">{{c.get_total}}shs</div>
+           
+            </div>
+            {% endfor %} 
+      </div>
+    </div> 
+   </div>
+  
+      {% endblock content %}
+   

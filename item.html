@@ -1,0 +1,379 @@
+{% extends 'main.html' %}
+{% load static%}
+{% block content %}
+
+
+
+   
+<div class="slider">
+  <div class="slides">
+    <input type="radio" name="radio-btn" id="radio1">
+    <input type="radio" name="radio-btn" id="radio2">
+    <input type="radio" name="radio-btn" id="radio3">
+    <input type="radio" name="radio-btn" id="radio4">
+
+    <div class="slide first">
+        <img src="../static/images/news-2.jpg" alt="" width="1349.4" height="540">
+    </div>
+
+    <div class="slide1">
+      <img src="../static/images/site.jpg.jpg" alt="" width="1355" height="540">
+    </div>
+
+    <div class="slide3">
+      <img src="../static/images/bac.jpg" alt="" width="1356" height="540">
+    </div>
+    
+    <div class="slide4">
+      <img src="../static/images/news-2.jpg" alt="" width="1358" height="540">
+    </div>
+
+    <div class="nagivation-auto">
+              <div class="auto-btn1"></div>
+              <div class="auto-btn2"></div>
+              <div class="auto-btn3"></div>
+              <div class="auto-btn4"></div>
+    </div> 
+</div>
+
+ <div class="nagativation-manual">
+             <label for="radio1"class="manual-btn"></label>
+             <label for="radio2"class="manual-btn"></label>
+             <label for="radio3"class="manual-btn"></label>
+             <label for="radio4"class="manual-btn"></label>
+       </div>
+       <div class="scroll">
+        <p><strong> Welcome to 0neshop Grocery</strong></p>
+         <div class="box-border">           
+            <p style="background-color: orange;">Start Now</p>
+         </div>
+      </div>
+    
+  </div>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar-expand-lg">
+    <div class="container-fluid">
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Categories
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item" href="#">See All</a></li>
+              <li><a class="dropdown-item" href="#">Fresh Vegetables</a></li>
+              <li><a class="dropdown-item" href="#">Fresh Fruits</a></li>
+              <li><a class="dropdown-item" href="#">Canned Foods $ Legumes</a></li>
+              <li><a class="dropdown-item" href="#">Oils</a></li>
+              <li><a class="dropdown-item" href="#">Snacks</a></li>
+              <li><a class="dropdown-item" href="#">Spice & Grains</a></li>
+
+            </ul>
+          </li>
+        </ul>
+
+
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav" id="navmark">
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">Info</a>
+            <a class="nav-link" href="#">Pricing</a>
+           
+          </div>
+        
+
+          <form class="d-flex" role="search" id="d-flex">
+            <input class="form-control me-2" id="form_control" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit" id="change_color">Search</button>
+          </form>
+
+
+      </div>
+    </div>
+  </nav>
+
+
+
+
+
+
+  
+  
+   <div class="row">
+    {% for product in products %}
+     <div class="col-lg-3">
+      <img class="thumbnail"  src="{{ product.imageURL }}" alt="" width="200" height="170">
+      <div class="box-element product">
+        <h6><strong>{{product.name}}</strong></h6>
+        <hr>
+        {% if request.user.is_authenticated %}
+         <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update_cart ">
+          Add to Cart</button>
+          
+        <a class="btn btn-outline-success" href="#">View</a>
+        {% else %}
+        {% endif %}
+        <h5 style="display: inline-block; float: right;">{{product.price}}</5>
+      </div>
+    
+ </div>
+    {% endfor %}  
+
+    
+
+ <div class="seeall">
+  <button class="seeall"><a href="#">SeeAll</a></button>
+ </div>
+
+ <div class="popular">
+     <h1 style="font-size:25px ;"><strong> Popular Products</strong></h1>
+ </div>
+    <div class="row row-cols-1 row-cols-md-4 g-3" >
+     
+            <div class="col">
+              <div class="card h-70">
+                <img src="" class="card-img-top" alt="..." width="200" height="170">
+                <div class="card-body">
+                  <h5 class="card-title"><strong>beans</strong></h5>
+                  <hr>
+                  <p class="card-text">This is a longer card with supporting  </p>
+                  <button class="btn btn-outline-secondary add-btn">Add to cart</button>
+                  <a class="btn btn-outline-success" href="#">View</a>
+                  <h5 style="display: inline-block; float: right;">200shs</5>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-70">
+                <img src="" class="card-img-top" alt="..." width="200" height="170">
+                <div class="card-body">
+                  <h5 class="card-title"><strong>beans</strong></h5>
+                  <hr>
+                  <p class="card-text">This is a longer card with supporting  </p>
+                  <button class="btn btn-outline-secondary add-btn">Add to cart</button>
+                  <a class="btn btn-outline-success" href="#">View</a>
+                  <h5 style="display: inline-block; float: right;">200shs</5>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col">
+              <div class="card h-70">
+                <img src="" class="card-img-top" alt="..." width="200" height="170">
+                <div class="card-body">
+                  <h5 class="card-title"><strong>beans</strong></h5>
+                  <hr>
+                  <p class="card-text">This is a longer card with supporting  </p>
+                  <button class="btn btn-outline-secondary add-btn">Add to cart</button>
+                  <a class="btn btn-outline-success" href="#">View</a>
+                  <h5 style="display: inline-block; float: right;">200shs</5>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-70">
+                <img src="" class="card-img-top" alt="..." width="200" height="170">
+                <div class="card-body">
+                  <h5 class="card-title"><strong>beans</strong></h5>
+                  <hr>
+                  <p class="card-text">This is a longer card with supporting  </p>
+                  <button class="btn btn-outline-secondary add-btn">Add to cart</button>
+                  <a class="btn btn-outline-success" href="#">View</a>
+                  <h5 style="display: inline-block; float: right;">200shs</5>
+                </div>
+              </div>
+            </div>
+     </div>
+   
+
+   <div class="seeal">
+    <button class="see"><a href="#">SeeAll</a></button>
+   </div>
+
+   
+   <div class="pack">
+    <h1 style="font-size:25px; margin-left: -45px;">Popular Bundle Pack</h1>
+   </div>
+ 
+   <div class="row row-cols-1 row-cols-md-2 g-3" id="cols">
+    <div class="col" id="card">
+      <div class="card">
+        <img src="../static/images/fresh-yam.jpg" class="card-img-top" alt="..."width="200" height="170">
+        <div class="card-body">
+          <h5 class="card-title"><strong>  Large Pack</strong></h5>
+          <p class="card-text" id="large" >Tomato,Potato,Irish,Green paper +4</p>
+          <h5 style="display: inline-block; float: left; font-size: 28px;">200shs</5><br>
+          <button class="btn btn-outline-secondary add-btn" style="margin-left:10rem;" id="large">Add to cart</button>
+           
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="col" id="card">
+      <div class="card">
+        <img src="../static/images/lettuce.jpg" class="card-img-top" alt="..."width="200" height="170">
+        <div class="card-body">
+          <h5 class="card-title" id=""><strong>Big Pack</strong></h5>
+          <p class="card-text" id="large">Tomato,Potato,Irish,Green paper +9</p>
+          <h5 style="display: inline-block; float: left; font-size: 28px;">20,000shs</5><br>
+            <button class="btn btn-outline-secondary add-btn" style="margin-left:10rem;" id="large">Add to cart</button>
+             
+        </div>
+      </div>
+    </div>
+    <div class="col" id="card">
+      <div class="card">
+        <img src="../static/images/Cabbage.jpg" class="card-img-top" alt="..."width="200" height="170">
+        <div class="card-body">
+          <h5 class="card-title"><strong> Small Pack</strong></h5>
+          <p class="card-text" id="large">Tomato,Potato,Irish,Green paper +3</p>
+          <h5 style="display: inline-block; float: left; font-size: 28px;">10,400shs</5><br>
+            <button class="btn btn-outline-secondary add-btn" style="margin-left:10rem;" id="large">Add to cart</button>
+             
+    
+        </div>
+      </div>
+    </div>
+    <div class="col" id="card">
+      <div class="card">
+        <img src="../static/images/irish.jpg" class="card-img-top" alt="..."width="200" height="170">
+        <div class="card-body">
+          <h5 class="card-title"  id="large"><strong>Medium Pack </strong></h5>
+          <p class="card-text"id="large">Tomato,Potato,Onions,Lemone, Green paper +7</p>
+          <h5 style="display: inline-block; float: left; font-size: 28px;">40,800shs</5><br>
+          <button class="btn btn-outline-secondary add-btn" style="margin-left:10rem;" id="large">Add to cart</button>
+             
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="seeal">
+    <button class="see"><a href="#">SeeAll</a></button>
+   </div>
+
+
+  <div class="comment">
+    <h1 style="font-size:25px; margin-left: -56px; text-align: center; margin-top: 30px;">What Our Client's Say</h1>
+   </div>
+              <div class="row row-cols-1 row-cols-md-4 g-3" id="movecomment">
+            <div class="col">
+              <div class="card h-80">
+                <img src="../static/images/irish.jpg" class="card-img-top" alt="..." style="border-radius:50%;width:160px; height:140px; margin-left: 3.5rem; margin-top: 5px;">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a longer card with</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-80">
+                <img src="../static/images/fresh-yam.jpg" class="card-img-top" alt="..." style="border-radius:50%;width:160px; height:140px; margin-left: 3.5rem; margin-top: 5px;">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a short card.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-80">
+                <img src="../static/images/gradstd.jpg" class="card-img-top" alt="..."  style="border-radius:50%;width:160px; height:140px; margin-left: 3.5rem; margin-top: 5px;">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a longer card with</p>
+                </div>
+              </div>
+            </div>
+           
+          </div>
+
+
+
+   </div>   
+
+
+  <footer>
+  <div class="footer-container">
+       <div class="foot-log">
+        <a href="#"> <span> O</span>neshop</a>
+        <div class="footer-social">
+          <a href="#"> <i class="fab fa-facebook-f "></i></a>
+          <a href="#"> <i class="fab fa-twitter "></i></a>
+          <a href="#"> <i class="fab fa-instagram"></i></a>
+          <a href="#"> <i class="fab fa-youtube "></i></a>
+
+        </div>
+       </div>
+       <div class="footer-link">
+        <strong>Products</strong>
+        <ul>
+          <li><a href="#">Popular</a></li>
+          <li><a href="#">New</a></li>
+          <li><a href="#">packages</a></li>
+         
+        </ul>       
+       </div>
+
+       <div class="footer-link">
+        <strong>Category</strong>
+        <ul>
+          <li><a href="#">Vegetables</a></li>
+          <li><a href="#">Fruits</a></li>
+          <li><a href="#">Foods</a></li>
+          <li><a href="#">Spices</a></li>
+          <li><a href="#">Oils</a></li>
+        
+        </ul>
+
+        
+       </div>
+       <div class="footer-link">
+        <strong>Contacts</strong>
+        <ul>
+          <li style="font-size: 0.9rem; opacity: 0.5; color: #ffffff;">Phone:<a href="#" style="margin-left:5px;">0751530868</a></li>
+          <li style="font-size: 0.9rem; opacity: 0.5; color: #ffffff;">Email:<a href="#" style="margin-left:5px;">Oneshop@gmail.com</a></li>
+ 
+        </ul>
+
+        
+       </div>
+       <div class="footer-link">
+        <strong>Message</strong>
+        <ul>
+         <input type="text" style=" height:60px; border: none; border-radius: 5px; outline: none;">
+          <button  class="send" style="width: 50px; border: none; border-radius: 3px; background-color: rgb(255, 167, 4);" >Send</button>
+        </ul>
+
+        
+       </div>
+       
+  </div>
+  
+</footer>
+
+   <script type="text/javascript">
+    var counter= 1;
+      setInterval(function(){
+        document.getElementById("radio" + counter).checked=true;
+        counter++;
+        if (counter > 4){
+          counter = 1;
+        }
+        
+      },5000);
+
+ </script>
+  
+{% endblock content%}
+</body>
+</html>

@@ -1,0 +1,96 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row"style="margin-top:9rem ;">
+    <div class="col-lg-6" id="form-wrapper">
+        <div class="box-element" id="box-color">
+           <form action="" id="form">
+               <div class="user-info">
+                <h3 style="text-align: center;">Shipping information</h3>
+                <hr>
+                   <div class="form-field">
+                        <input type="text" name="name" class="input-field" placeholder="Name" required>
+                   </div>
+
+                    <div class="form-field">
+                        <input type="email" name="email" class="input-field" placeholder="Email" required>
+                    </div>
+                </div>
+            <div id="shipping-info">
+                    <hr>
+
+                    
+               <div class="form-field">
+                   <input type="text" name="country" class="input-field" placeholder="Country" required>
+                </div>
+
+                <div class="form-field">
+                    <input type="text" name="city" class="input-field" placeholder="City" required>
+                  </div>
+
+                  <div class="form-field">
+                    <input type="text" name="division" class="input-field" placeholder="Division" required>
+                   </div>
+
+                    <div class="form-field">
+                    <input type="text" name="address" class="input-field" placeholder="Address" required>
+                   </div>   
+                  
+                  <div class="form-field">
+                    <input type="text" name="zipcode" class="input-field" placeholder="Zipcode" required>
+                  </div>
+
+  
+            </div>
+            <hr>
+            <input type="submit" id="form-button" value="continue" class="btn btn-success btn-block">
+           </form>
+        </div>
+        <br>
+
+        <div class="box-element hidden" id="payment-info">
+            <small>Mobile Money</small>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="box-element" id="box-color">
+            <a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190;</a>
+            <hr>
+             <h3 style="text-align: center;">Order Summary</h3>
+             <hr>
+             {% for item in items %}
+        <div class="cart-row">
+                <div style="flex: 2;"><img src="{{item.product.imageURL}}" alt="" class="flex-img"></div>
+                <div style="flex: 1;font-size: 20px;  margin-top: 44px;font-family: 'Times New Roman', Times, serif;font-size: 23px;"><p> {{item.product.name}}</p></div>
+                <div style="flex: 1;font-size: 20px; margin-top: 44px;font-family: 'Times New Roman', Times, serif;font-size: 23px;"><p>{{item.product.price}}shs</p></div>
+                <div style="flex: 1;font-size: 20px;  margin-top: 44px;font-family: 'Times New Roman', Times, serif;font-size: 23px;"><p>x{{item.quantity}}</p></div>
+        </div>
+        {% endfor %}
+           <h5>Items:<p style="margin-left:4rem ; margin-top: -1.5rem;"> {{ order.get_cart_items}}</p></h5>
+           <h5 >Total: <p style="margin-left:4rem ; margin-top: -1.5rem;"> {{order.get_cart_total|floatformat:2}}shs</p></h5>
+        </div>
+    </div>
+</div>
+
+
+<script type ="text/javascript">
+    var shipping = '{{order.shipping}}'
+
+    if(shipping == 'False'){
+        document.getElementById('shipping-info').innerHTML = ''
+    }
+    var form = document.getElementById('form')
+    form.addEventListener('submit',function(e){
+        e.preventDefault()
+        console.log('Form submitted..')
+        document.getElementById('form-button').classList.add('hidden');
+        document.getElementById('payement-info').classList.remove('hidden');
+
+
+    })
+</script>
+
+
+{% endblock content %}
